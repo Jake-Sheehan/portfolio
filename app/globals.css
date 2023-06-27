@@ -19,26 +19,36 @@
     text-underline-position: under;
   }
 
-  .flex-box-posts {
+  ._flex-row {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 5%;
-    row-gap: 4rem;
+    flex-flow: row wrap;
   }
 
-  .flex-posts {
-    flex-basis: 42.5%;
+  ._flex-center {
+    justify-content: center;
+    align-items: center;
+  }
+
+  ._flex-row-gap {
+    row-gap: 7rem;
+  }
+
+  ._blog-post-basis {
+    flex-basis: 100%;
   }
   
   .flex-projects {
     flex-basis: 33%;
   }
 
-  .flex-posts:first-child {
+  #posts article:first-child {
     flex-basis: 100%;
+  }
+
+  @screen xl {
+    ._blog-post-basis {
+      flex-basis: 50%;
+    }
   }
 }
 
@@ -54,7 +64,8 @@ body {
 
 @layer components {
   .glass {
-    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(24px);
     background-color: rgba(0, 0, 0, 0.5);
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.8);
   }
