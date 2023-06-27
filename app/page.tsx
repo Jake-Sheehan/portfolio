@@ -5,10 +5,10 @@ export default function Home() {
   return (
     <main className="withBgImage flex min-h-screen flex-col items-center justify-center p-24 text-center">
       <GlassPane flexDirection="col">
-        <h2 className="text-3xl font-extrabold text-gray-200 lg:text-5xl">
+        <h2 className="text-4xl font-extrabold text-gray-200 md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl">
           Hi, I&apos;m Jake Sheehan.
         </h2>
-        <h2 className="text-xl font-extrabold text-gray-300 lg:text-2xl">
+        <h2 className="text-xl font-extrabold text-gray-300 md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
           I build software for the web.
         </h2>
         <ul className="flex flex-col items-center justify-center gap-8 md:flex-row">
