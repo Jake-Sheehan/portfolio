@@ -26,15 +26,17 @@ export default function Blog() {
       >
         {posts.map((post) => {
           return (
-            <article key={post.id} className="_blog-post-basis p-8 shadow-lg">
+            <article
+              key={post.id}
+              className="_blog-post-basis prose-xl flex flex-col items-center justify-center gap-5 p-8 shadow-lg xl:prose-2xl"
+            >
+              <h2>{post.title}</h2>
+              <p>{post.subhead}</p>
               <Link
+                className="rounded bg-indigo-600 p-2 text-white transition-all hover:scale-105 active:scale-95"
                 href={`/blog/${post.slug}`}
-                className="flex flex-col items-center justify-center gap-5"
               >
-                <h2 className="sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl">
-                  {post.title}
-                </h2>
-                <p className="text-base">{post.subhead}</p>
+                Read More
               </Link>
             </article>
           );
