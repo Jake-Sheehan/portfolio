@@ -22,11 +22,11 @@ export default function Blog() {
       </header>
       <section
         id="posts"
-        className="_flex-row _flex-row-gap items-center justify-center"
+        className="_flex-row _flex-row-gap _flex-col-gap items-center justify-center"
       >
         {posts.map((post) => {
           return (
-            <article key={post.id} className="_blog-post-basis">
+            <article key={post.id} className="_blog-post-basis p-8 shadow-lg">
               <Link
                 href={`/blog/${post.slug}`}
                 className="flex flex-col items-center justify-center gap-5"

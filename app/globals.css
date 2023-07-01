@@ -33,6 +33,11 @@
     row-gap: 7rem;
   }
 
+  ._flex-col-gap {
+    -moz-column-gap: 5%;
+         column-gap: 5%;
+  }
+
   ._blog-post-basis {
     flex-basis: 100%;
   }
@@ -41,13 +46,9 @@
     flex-basis: 33%;
   }
 
-  #posts article:first-child {
-    flex-basis: 100%;
-  }
-
   @screen xl {
     ._blog-post-basis {
-      flex-basis: 50%;
+      flex-basis: 47.5%;
     }
   }
 }

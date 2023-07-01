@@ -5,7 +5,11 @@ import Link from "next/link";
 
 const lato = Lato({ subsets: ["latin"], weight: "400" });
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
+export default async function BlogPost({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const post = getPost(params.slug);
   if (!post) {
     notFound();
@@ -13,7 +17,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
   return (
     <main className="m-auto flex max-w-7xl flex-col items-center justify-start gap-1">
-      <header className="mb-4 flex w-full flex-row items-center justify-start">
+      <header className="my-8 flex w-full flex-row items-center justify-start">
         <Link
           href="/blog"
           className="text-lg font-bold text-indigo-600 hover:text-black"
