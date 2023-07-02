@@ -1,23 +1,34 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import Post from "../../posts/blog-post-1.mdx";
+import fs from "fs";
+import path from "path";
+import { getPost } from "@/app/posts/Posts";
+import BlogHeader from "@/components/BlogHeader";
+
+// creates pages at build time
+export async function generateStaticParams() {
+  // get path to blog posts folder
+  const dir = path.resolve("./", "app", "posts");
+  // read filenames from folder
+  let filenames = fs.readdirSync(dir);
+  // get filename without extension
+  return filenames.map((name) => ({ slug: path.parse(name).name }));
+}
 
 export default async function BlogPost({
   params,
 }: {
   params: { slug: string };
 }) {
+  const Post = getPost(params.slug);
+  if (!Post) {
+    notFound();
+  }
   return (
     <main className="m-auto flex max-w-7xl flex-col items-center justify-start gap-1">
-      <header className="my-12 flex w-full flex-row items-center justify-start">
-        <Link
-          href="/blog"
-          className="text-lg font-bold text-indigo-600 hover:text-black"
-        >
-          Back
-        </Link>
-      </header>
-      <Post />
+      <BlogHeader href="/blog" />
+      <section className="mx-4">
+        <Post.component />
+      </section>
     </main>
   );
 }
