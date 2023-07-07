@@ -15,7 +15,7 @@ export default function LinkButton({
   return (
     <Link
       href={href}
-      className={`${lilita_one.className} text-base tracking-widest text-blue-200 transition-all hover:text-blue-400 md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl`}
+      className={`${lilita_one.className} text-lg tracking-widest text-blue-200 transition-all hover:text-blue-400 lg:text-xl xl:text-2xl 2xl:text-3xl`}
     >
       {disabled ? <s>{label}</s> : label}
     </Link>

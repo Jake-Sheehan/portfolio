@@ -2,6 +2,12 @@ import Link from "next/link";
 import { getAllPosts } from "../posts/Posts";
 import { ArrowRight } from "react-feather";
 import BlogHeader from "@/components/BlogHeader";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Jake's Blog",
+  description: "Jake Sheehan's web development blog.",
+};
 
 export default function Blog() {
   const posts = getAllPosts();

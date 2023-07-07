@@ -1,0 +1,24 @@
+import BlogLayout from "../../components/BlogLayout.tsx";
+
+export const meta = {
+  title: "Hello World!",
+  author: "Jake Sheehan",
+};
+
+Hi everyone, welcome to my first blog post! Since deciding to start a blog, the most common piece of advice I’ve seen is something along the lines of “your first post will be probably be terrible, but just keep writing ”. With that in mind, I’ll try to keep this one short.
+
+### A little bit about me
+
+To start off, I should let you know that I am not a professional web developer. I am a carpenter who builds residential homes for a living. So what am I doing writing a tech blog focused on web development? That is a good question.
+
+A few years ago I decided to go back to school. While I love carpentry, I have always wanted to learn how to program computers. After many long nights and weekends filled with studying, writing papers, and generally questioning my life choices, here I am as a recent graduate with a BS in Computer Science facing a career change in my early 30’s. Scary stuff.
+
+During my time as a computer science student, I learned all about topics like sorting algorithms, linear algebra, operating systems structure, and many others. This was all important, but did it teach me about the daily work of a web developer? Not quite. After graduation, I didn’t feel like I was ready to start making contributions as a professional web developer. So, I decided I would take some time to teach myself some things that I felt my degree program was lacking. Why not share that journey with all of you?
+
+### Why this blog?
+
+This blog is as much for me as it is for you. Self-learning can be difficult, and the world of web development is vast. This blog offers me a place to document my learning, to solidify my ideas by writing them down, to create a reference for me to return to when I inevitably forget what I’ve learned, and hopefully to help you learn along with me. Is this some revolutionary new idea that will change blogging as we know it? Nope. There are probably tens of thousands of blogs here doing something similar. My hope is that I can bring a somewhat different perspective being an older learner facing a career change while riddled with impostor syndrome. Wish me luck.
+
+export default ({ children }) => (
+  <BlogLayout meta={meta}>{children}</BlogLayout>
+);

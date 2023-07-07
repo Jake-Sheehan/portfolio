@@ -1,8 +1,7 @@
 import { MDXProps } from "mdx/types";
 
 // --- import post here ---
-import Post1 from "./blog-post-1.mdx";
-import Post2 from "./blog-post-2.mdx";
+import HelloWorld from "./hello-world.mdx";
 
 // --- types ---
 
@@ -21,17 +20,10 @@ type PostsType = Post[];
 export const Posts: PostsType = [
   {
     id: 1,
-    slug: "blog-post-1",
-    component: Post1,
-    title: "Test Title",
-    subhead: "this is a test. blah blah blah",
-  },
-  {
-    id: 2,
-    slug: "blog-post-2",
-    component: Post2,
-    title: "Test Title 2",
-    subhead: "this is a test. blah blah blah",
+    slug: "hello-world",
+    component: HelloWorld,
+    title: "Hello World!",
+    subhead: "Welcome to my new web development blog.",
   },
 ];
 

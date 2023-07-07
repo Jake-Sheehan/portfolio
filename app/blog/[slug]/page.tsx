@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
 import fs from "fs";
 import path from "path";
+import { Metadata, ResolvingMetadata } from "next";
 import { getPost } from "@/app/posts/Posts";
 import BlogHeader from "@/components/BlogHeader";
+import Footer from "@/components/Footer";
 
 // creates pages at build time
 export async function generateStaticParams() {
@@ -14,6 +16,26 @@ export async function generateStaticParams() {
   return filenames.map((name) => ({ slug: path.parse(name).name }));
 }
 
+// dynamic metadata using title of article
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const slug = params.slug;
+  const post = getPost(slug);
+  if (!post) {
+    return {
+      title: "not found",
+    };
+  }
+  return {
+    title: post.title,
+    description: post.subhead,
+  };
+}
+
+/** Component */
 export default async function BlogPost({
   params,
 }: {
@@ -29,6 +51,7 @@ export default async function BlogPost({
       <section className="mx-4">
         <Post.component />
       </section>
+      <Footer />
     </main>
   );
 }
