@@ -24,8 +24,8 @@ export default function Blog() {
             className="_blog-post-basis prose-xl flex flex-col items-center justify-start p-8 shadow-lg"
             key={post.id}
           >
-            <h2>{post.title}</h2>
-            <p>{post.subhead}</p>
+            <h2 className="text-center">{post.title}</h2>
+            <p className="text-center">{post.subhead}</p>
             <Link className="self-end p-2" href={`/blog/${post.slug}`}>
               <ArrowRight />
             </Link>
