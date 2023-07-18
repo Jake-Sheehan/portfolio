@@ -1,0 +1,97 @@
+import BlogLayout from "../../components/BlogLayout.tsx";
+
+export const meta = {
+  title: "Composing Components in Next.js",
+  author: "Jake Sheehan",
+};
+
+With the addition of the app router and React Server Components in version 13, Next.js has moved to a server-first architecture. Server Components are an exciting new feature. They can be asynchronous, they allow for data fetching on the server without needing to define an API endpoint, and they reduce the amount of JavaScript sent to the client. While all components are Server Components by default now, Client Components can still be used by declaring the `'use client'` directive in the first line of your component file.
+
+This is all great, but it does require a change in the way that developers think about the structure of their application. A React component tree might now contain both Server Components that are rendered on the server and Client Components that are rendered in the browser. This means that components that exist in the same component tree could have a network boundary between them, and new restrictions need to be considered in the composition of the component tree.
+
+## Importing Client Components
+
+This is the easy part. Since Client Components are rendered in the browser, they can be imported into Server Components and other Client Components without a problem.
+
+```ts
+// MyServerComponent.tsx
+import MyClientComponent from "./MyClientComponent";
+
+export default async function MyServerComponent() {
+  const data = await fetch("https://myapi.com/api");
+  return (
+    <div>
+      <p>Server Component</p>
+      <MyClientComponent />
+    </div>
+  );
+}
+```
+
+This is nothing new for anyone who has spent time writing React code. Now, lets try to import a Server Component into a Client Component.
+
+## Importing Server Components
+
+So lets try the same strategy for importing a Server Component that fetches data into a Client Component.
+
+```ts
+// MyClientComponent.tsx
+"use client";
+
+import MyServerComponent from "./MyServerComponent";
+
+export default function MyClientComponent() {
+  return (
+    <div>
+      <p>Client Component</p>
+      <MyServerComponent />
+    </div>
+  );
+}
+```
+
+This results in an `Unhandled Runtime Error` because the Server Component is fetching data, and that requires async/await. Client Components cannot be async functions. Instead, we can use composition. Inside the Client Component we add a `children` prop.
+
+```ts
+// MyClientComponent.tsx
+"use client";
+
+interface MyClientComponentProps {
+  children?: React.ReactNode;
+}
+
+export default function MyClientComponent({
+  children,
+}: MyClientComponentProps) {
+  return (
+    <div>
+      <p>Client Component</p>
+      {children}
+    </div>
+  );
+}
+```
+
+Then, we use compostion in the page file.
+
+```ts
+// page.tsx
+import MyClientComponent from "@/components/MyClientComponent";
+import MyServerComponent from "@/components/MyServerComponent";
+
+export default function Page() {
+  return (
+    <main>
+      <MyClientComponent>
+        <MyServerComponent />
+      </MyClientComponent>
+    </main>
+  );
+}
+```
+
+This works, but why? The `children` prop in the Client Component creates a slot in the component that will not effect its rendering. Once it is rendered, the Server Component fills that slot.
+
+export default ({ children }) => (
+  <BlogLayout meta={meta}>{children}</BlogLayout>
+);

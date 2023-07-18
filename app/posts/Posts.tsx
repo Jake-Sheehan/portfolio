@@ -2,6 +2,7 @@ import { MDXProps } from "mdx/types";
 
 // --- import post here ---
 import HelloWorld from "./hello-world.mdx";
+import ComposingComponents from "./composing-components.mdx";
 
 // --- types ---
 
@@ -24,6 +25,14 @@ export const Posts: PostsType = [
     component: HelloWorld,
     title: "Hello World!",
     subhead: "Welcome to my new web development blog.",
+  },
+  {
+    id: 2,
+    slug: "composing-components",
+    component: ComposingComponents,
+    title: "Composing Components in Next.js",
+    subhead:
+      "Learn how to compose Server Components and Client Components with the Next.js app router.",
   },
 ];
 
