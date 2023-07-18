@@ -46,7 +46,7 @@ export default async function BlogPost({
     notFound();
   }
   return (
-    <main className="m-auto flex max-w-7xl flex-col items-center justify-start gap-1">
+    <main className="m-auto my-4 flex max-w-full flex-col items-center justify-start gap-1 lg:max-w-7xl">
       <BlogHeader href="/blog" />
       <section className="mx-4">
         <Post.component />
